@@ -1,0 +1,21 @@
+{
+    "languageE": "Tiếng Anh",
+    "languageV": "Tiếng Việt",
+    "titleChoose": "Chọn ngôn ngữ",
+    "notiPlus": "Bạn đã nhấn nút (+) nhiều lần:",
+    "titleDarkMode": "Chế độ tối",
+    "emailLabel": "Thư điện tử",
+    "emailHelper": "Điền địa chỉ email của bạn",
+    "passwordLabel": "Mật khẩu",
+    "passwordHelper": "Vui lòng nhập mật khẩu",
+    "welcomeBackTitle": "Chào mừng trở lại!",
+    "loginTitle": "Đăng nhập",
+    "loginFailure": "Lỗi đăng nhập, vui lòng kiểm tra kết nối Internet",
+    "emailPassWrong": "Thông tin đăng nhập chưa đúng. Vui lòng nhập lại!",
+    "emailErrorEmpty": "Email không được để trống",
+    "emailErrorFormat": "Email không đúng định dạng",
+    "passwordErrorEmpty": "Mật khẩu không được để trống",
+    "otherMethodLogin": "Hoặc đăng nhập bằng",
+    "notHaveAccount": "Chưa có tài khoản?",
+    "registerNow": "Đăng ký ngay"
+}

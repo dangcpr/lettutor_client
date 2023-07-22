@@ -1,0 +1,21 @@
+{
+    "languageE": "English",
+    "languageV": "Vietnamese",
+    "titleChoose": "Choose your language",
+    "notiPlus": "You have pushed the button (+) this many times:",
+    "titleDarkMode": "Dark Mode",
+    "emailLabel": "Email",
+    "emailHelper": "Enter your email",
+    "passwordLabel": "Password",
+    "passwordHelper": "Enter your password",
+    "welcomeBackTitle": "Welcome Back!",
+    "loginTitle": "Login",
+    "loginFailure": "Login Failure. Please check Internet connection!",
+    "emailPassWrong": "Email or password is wrong. Please try again!",
+    "emailErrorEmpty": "Email cannot be empty",
+    "emailErrorFormat": "Email is not in the correct format",
+    "passwordErrorEmpty": "Password cannot be empty",
+    "otherMethodLogin": "Or login with",
+    "notHaveAccount": "Don't have an account?",
+    "registerNow": "Register now"
+}
