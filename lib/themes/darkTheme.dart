@@ -2,13 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_client/constants/colors.dart';
 
 ThemeData darkTheme = ThemeData(
+  primaryColor: colorProject.darkColor,
   fontFamily: 'GoogleSans-Regular',
   brightness: Brightness.dark,
-  appBarTheme: const AppBarTheme(
-    shadowColor: Colors.transparent,
-    backgroundColor: colorProject.darkColor,
-    foregroundColor: Colors.white,
-  ),
   useMaterial3: true,
   textTheme: const TextTheme(
     labelMedium: TextStyle(
@@ -24,7 +20,16 @@ ThemeData darkTheme = ThemeData(
       fontFamily: 'GoogleSans-Bold',
       color: colorProject.darkColor,
       fontSize: 26
-    )
+    ),
+    headlineLarge: TextStyle(
+      fontFamily: 'GoogleSans-Bold',
+      color: colorProject.darkColor,
+      fontSize: 34
+    ),
+    headlineSmall: TextStyle(
+      fontFamily: 'GoogleSans-Bold',
+      fontSize: 20
+    ),
   ),
   switchTheme: SwitchThemeData(
     thumbColor: MaterialStateProperty.all(Colors.white),
@@ -34,6 +39,7 @@ ThemeData darkTheme = ThemeData(
   ),
   textSelectionTheme: const TextSelectionThemeData(
     cursorColor: colorProject.darkColor,
+    selectionHandleColor: colorProject.darkColor
   ),
   inputDecorationTheme: const InputDecorationTheme(
     focusedBorder: UnderlineInputBorder(

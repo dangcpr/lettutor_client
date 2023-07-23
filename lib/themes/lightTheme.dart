@@ -2,13 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_client/constants/colors.dart';
 
 ThemeData lightTheme = ThemeData(
+  primaryColor: colorProject.lightColor,
   fontFamily: 'GoogleSans-Regular',
   brightness: Brightness.light,
-  appBarTheme: const AppBarTheme(
-    shadowColor: Colors.transparent,
-    backgroundColor: colorProject.lightColor,
-    foregroundColor: Colors.black,
-  ),
   useMaterial3: true,
   textTheme: const TextTheme(
     labelMedium: TextStyle(
@@ -24,7 +20,16 @@ ThemeData lightTheme = ThemeData(
       fontFamily: 'GoogleSans-Bold',
       color: colorProject.lightColor,
       fontSize: 26
-    )
+    ),
+    headlineLarge: TextStyle(
+      fontFamily: 'GoogleSans-Bold',
+      color: colorProject.lightColor,
+      fontSize: 34
+    ),
+    headlineSmall: TextStyle(
+      fontFamily: 'GoogleSans-Bold',
+      fontSize: 20
+    ),
   ),
   switchTheme: SwitchThemeData(
     overlayColor: MaterialStateProperty.all(Colors.lightBlueAccent),
