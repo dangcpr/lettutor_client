@@ -8,7 +8,8 @@ import 'package:lettutor_client/views/auth/forgotPass/index.dart';
 import 'package:lettutor_client/views/auth/login/index.dart';
 //import 'package:lettutor_client/views/auth/login/temp.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:lettutor_client/views/auth/signup/index.dart';
+import 'package:lettutor_client/views/auth/sendEmail/index.dart';
+import 'package:lettutor_client/views/auth/signup/registerAccount/index.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -20,11 +21,11 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   // This widget is the root of your application.
+  
   @override
   Widget build(BuildContext context) {
     final systemProvider = Provider.of<SystemProvider>(context);
     systemProvider.loadOption();
-
     return MaterialApp(
       title: 'LetTutor',
       debugShowCheckedModeBanner: false,
@@ -43,7 +44,8 @@ class MyApp extends StatelessWidget {
         //'/': (context) => const LoginScreen(),
         '/login': (context) => const LoginScreen(),
         '/signup': (context) => const SignUpScreen(),
-        '/forgotPass': (context) => const ForgetPassScreen()
+        '/forgotPass': (context) => const ForgetPassScreen(),
+        '/sendEmailVerified': (context) => const SendEmailVerifiedScreen(),
         //'/temp': (context) => const TempScreen(),
       },
       home: const LoginScreen(),

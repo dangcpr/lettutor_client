@@ -12,7 +12,7 @@ class _StudentScreenState extends State<StudentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea (
-        child: Text('Teacher')
+        child: Text('Student')
       )
     );
   }

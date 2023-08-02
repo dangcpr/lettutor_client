@@ -32,5 +32,22 @@
     "newAccountSub": "Create a new account to begin",
     "signupButton": "Sign up",
     "alreadyHaveAccount": "Already have an account?",
-    "loginNow": "Login now"
+    "loginNow": "Login now",
+    "success": "Successful!",
+    "createAccountSuccess": "Create account successfully!",
+    "pleaseCheckEmail": "Please check email {email} to activate your account!",
+    "@pleaseCheckEmail": {
+        "placeholders": {
+            "email": {
+                "type": "String",
+                "example": "abc@gmail.com"
+            }
+        }
+    },
+    "backToLogin": "Back to login",
+    "emailExists": "Email already exists. Please try again!",
+    "formatInfoError": "Your information is not in the correct format. Please try again!",
+    "timeoutError": "Timeout Error. Please check Internet connection!",
+    "internetError": "Internet Error. Please check Internet connection!",
+    "serverError": "Server Error. Please try again!"
 }

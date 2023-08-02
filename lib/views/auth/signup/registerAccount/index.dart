@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:lettutor_client/controllers/accounts.dart';
 import 'package:lettutor_client/views/settings/button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -16,10 +17,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _passwordVisible = true;
   bool _rePasswordVisible = true;
+  bool _isDone = true;
+  int _result = 1;
+  int result = 1;
   var Account = {
     'email': TextEditingController(),
     'password': TextEditingController(),
+    'rePassword': TextEditingController(),
   };
+  
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +73,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             if(EmailValidator.validate(value) == false) {
                               return AppLocalizations.of(context)!.emailErrorFormat;
                             }
+
+                            if(_result == 0) {
+                              _result = 1;
+                              return AppLocalizations.of(context)!.emailExists;
+                            }
                             else {
                               return null;
                             }
@@ -107,6 +118,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       SizedBox(
                         height: 80,        
                         child: TextFormField(
+                          controller: Account['rePassword'],
                           obscureText: _rePasswordVisible,
                           decoration: InputDecoration(
                             suffixIcon: IconButton(
@@ -131,7 +143,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             else {
                               return null;
                             }
-
                           },
                         ),
                       ),
@@ -142,12 +153,69 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: TextButton(
-                  onPressed: () => {
-                    if(_formKey.currentState!.validate()) {
-                      debugPrint('Login')
+                  onPressed: () async {
+                    if(_formKey.currentState!.validate() == false) {
+                        return;
+                    }
+
+                    setState(() => _isDone = false);
+                    result = await AccountController.signup(Account['email']!.text, Account['password']!.text, Account['rePassword']!.text);
+                    setState(() { _isDone = true; });
+                    setState(() { _result = result; });
+
+                    if(result == 1) {
+                      // ignore: use_build_context_synchronously
+                      Navigator.pushNamedAndRemoveUntil(context, '/sendEmailVerified', ModalRoute.withName('/sendEmailVerified'), arguments: Account['email']!.text);
+                    }
+                    else if(result == 0) {
+                      _formKey.currentState!.validate();
+                    }
+                    else if (result == 2) {
+                      debugPrint(result.toString());
+                      // ignore: use_build_context_synchronously
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          // ignore: use_build_context_synchronously
+                          content: Text(AppLocalizations.of(context)!.formatInfoError),
+                          backgroundColor: Colors.red,
+                        )
+                      );
+                    }
+                    else if(result == 3) {
+                      debugPrint(result.toString());
+                      // ignore: use_build_context_synchronously
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          // ignore: use_build_context_synchronously
+                          content: Text(AppLocalizations.of(context)!.timeoutError, style: TextStyle(color: Colors.white),),
+                          backgroundColor: Colors.red,
+                        )
+                      );
+                    }
+                    else if(result == 4) {
+                      debugPrint(result.toString());
+                      // ignore: use_build_context_synchronously
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          // ignore: use_build_context_synchronously
+                          content: Text(AppLocalizations.of(context)!.internetError, style: TextStyle(color: Colors.white),),
+                          backgroundColor: Colors.red,
+                        )
+                      );
+                    }
+                    else {
+                      debugPrint(result.toString());
+                      // ignore: use_build_context_synchronously
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          // ignore: use_build_context_synchronously
+                          content: Text(AppLocalizations.of(context)!.serverError, style: TextStyle(color: Colors.white),),
+                          backgroundColor: Colors.red,
+                        )
+                      );
                     }
                   },
-                  child: Text(AppLocalizations.of(context)!.signupButton),
+                  child: _isDone ? Text(AppLocalizations.of(context)!.signupButton) : const CircularProgressIndicator(color: Colors.white),
                 )
               ),
               Padding(

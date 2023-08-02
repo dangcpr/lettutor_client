@@ -2,6 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lettutor_client/controllers/accounts.dart';
 import 'package:lettutor_client/views/settings/button.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -16,6 +17,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _passwordVisible = true;
+  bool isDone = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -119,12 +122,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   child: TextButton(
-                    onPressed: () => {
-                      if(_formKey.currentState!.validate()) {
-                        debugPrint('Login')
+                    onPressed: () async {
+                      if(_formKey.currentState!.validate() == false) {
+                        return;
+                      }
+                      else {
+                        setState(() { isDone = false; });
+                        bool _isDone = await AccountController.login();
+                        setState(() { isDone = _isDone; });
+                        debugPrint('Login');
                       }
                     },
-                    child: Text(AppLocalizations.of(context)!.loginTitle),
+                    child: isDone ? Text(AppLocalizations.of(context)!.loginTitle) : CircularProgressIndicator(color: Colors.white),
                   )
                 ),
                 Align(

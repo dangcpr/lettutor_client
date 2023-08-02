@@ -45,6 +45,7 @@ dependencies:
   material_design_icons_flutter: ^7.0.7296
   shared_preferences: ^2.2.0
   dio: ^5.3.0
+  animated_check: ^1.0.5
 
 dev_dependencies:
   flutter_test:

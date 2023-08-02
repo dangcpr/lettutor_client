@@ -32,5 +32,22 @@
     "newAccountSub": "Hãy tạo một tài khoản để bắt đầu",
     "signupButton": "Đăng ký",
     "alreadyHaveAccount": "Đã có tài khoản?",
-    "loginNow": "Đăng nhập ngay"
+    "loginNow": "Đăng nhập ngay",
+    "success": "Thành công!",
+    "createAccountSuccess": "Tạo tài khoản thành công!",
+    "pleaseCheckEmail": "Vui lòng kiểm tra email {email} để xác thực tài khoản",
+    "@pleaseCheckEmail": {
+        "placeholders": {
+            "email": {
+                "type": "String",
+                "example": "abc@gmail.com"
+            }
+        }
+    },
+    "backToLogin": "Quay lại đăng nhập",
+    "emailExists": "Email đã tồn tại. Vui lòng thử lại!",
+    "formatInfoError": "Thông tin không đúng định dạng. Vui lòng thử lại!",
+    "timeoutError": "Hết thời gian kết nối, vui lòng kiểm tra kết nối Internet!",
+    "internetError": "Không có kết nối Internet, vui lòng kiểm tra kết nối Internet của bạn!",
+    "serverError": "Lỗi máy chủ, vui lòng thử lại sau!"
 }
