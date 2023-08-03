@@ -6,6 +6,7 @@ import 'package:lettutor_client/constants/server.dart';
 
 final dio = Dio(
   BaseOptions(
+    baseUrl: '$urlServer/account',
     connectTimeout: Duration(seconds: 5),
     receiveTimeout: Duration(seconds: 5),
   ),
@@ -24,7 +25,7 @@ class AccountController {
 
   static Future<int> signup(String email, String password, String rePassword) async {
     try {
-      Response response = await dio.post('$urlServer/signup', 
+      Response response = await dio.post('/signup', 
         data: {
           'email': email,
           'password': password,

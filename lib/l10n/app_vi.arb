@@ -47,7 +47,7 @@
     "backToLogin": "Quay lại đăng nhập",
     "emailExists": "Email đã tồn tại. Vui lòng thử lại!",
     "formatInfoError": "Thông tin không đúng định dạng. Vui lòng thử lại!",
-    "timeoutError": "Hết thời gian kết nối, vui lòng kiểm tra kết nối Internet!",
+    "timeoutError": "Hết thời gian kết nối, vui lòng thử lại!",
     "internetError": "Không có kết nối Internet, vui lòng kiểm tra kết nối Internet của bạn!",
     "serverError": "Lỗi máy chủ, vui lòng thử lại sau!"
 }

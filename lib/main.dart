@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,      
       ],
-      initialRoute: '/login',
+      initialRoute: '/',
       routes: {
         //'/': (context) => const LoginScreen(),
         '/login': (context) => const LoginScreen(),
