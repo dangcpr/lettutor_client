@@ -1,7 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor_client/controllers/accounts.dart';
+import 'package:lettutor_client/controllers/account/accounts.dart';
 import 'package:lettutor_client/views/settings/button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

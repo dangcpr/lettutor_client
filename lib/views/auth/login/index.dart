@@ -2,7 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:lettutor_client/controllers/accounts.dart';
+//import 'package:lettutor_client/controllers/account/accounts.dart';
 import 'package:lettutor_client/views/settings/button.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -16,6 +16,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
   bool _passwordVisible = true;
   bool isDone = true;
 
@@ -56,6 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 80,
                   child: TextFormField(
+                    controller: _emailController,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.email),
                       labelText: AppLocalizations.of(context)!.emailLabel,
@@ -77,6 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 80,        
                   child: TextFormField(
+                    controller: _passwordController,
                     obscureText: _passwordVisible,
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
@@ -128,8 +132,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       }
                       else {
                         setState(() { isDone = false; });
-                        bool _isDone = await AccountController.login();
-                        setState(() { isDone = _isDone; });
+                        //int result = await AccountController.login(_emailController.text, _passwordController.text);
+                        setState(() { isDone = true; });
                         debugPrint('Login');
                       }
                     },

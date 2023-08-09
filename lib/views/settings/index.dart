@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_client/providers/systemProvider.dart';
+import 'package:lettutor_client/cubit/system/dark_mode_cubit.dart';
+import 'package:lettutor_client/cubit/system/language_cubit.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -16,8 +17,8 @@ class _SystemSettingBottomState extends State<SystemSettingBottom> {
   @override
   void initState() {
     super.initState();
-    darkModeSetting = context.read<SystemProvider>().isDarkMode;
-    locale = context.read<SystemProvider>().locale;
+    darkModeSetting = context.read<DarkModeCubit>().state;
+    locale = context.read<LanguageCubit>().state;
   }
 
   @override
@@ -44,8 +45,10 @@ class _SystemSettingBottomState extends State<SystemSettingBottom> {
                         DropdownMenuItem(value: 2, child: Text(AppLocalizations.of(context)!.system)),
                       ],
                       onChanged: (val) {
-                        context.read<SystemProvider>().changeOption(val as int);
-                        darkModeSetting = val as int;
+                        context.read<DarkModeCubit>().changeTheme(val as int);
+                        setState(() {
+                          darkModeSetting = val as int;
+                        });
                       }
                     )
                   ],
@@ -61,7 +64,7 @@ class _SystemSettingBottomState extends State<SystemSettingBottom> {
                         DropdownMenuItem(value: 'vi', child: Text(AppLocalizations.of(context)!.languageV)),
                       ],
                       onChanged: (val) {
-                        context.read<SystemProvider>().changeLocale(Locale(val.toString()));
+                        context.read<LanguageCubit>().changeLocale(Locale(val.toString()));
                         setState(() {
                           locale = Locale(val.toString());
                         });
