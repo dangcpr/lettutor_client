@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, prefer_if_null_operators
 import 'dart:convert';
 
 class Account {
@@ -58,21 +58,21 @@ class Account {
 
   factory Account.fromMap(Map<String, dynamic> map) {
     return Account(
-      uuid: map['uuid'] ?? '',
-      email: map['email'] ?? '',
-      password: map['password'] ?? '',
-      role: map['role'] ?? '',
-      avatar: map['avatar'] ?? '',
-      verified: map['verified'] ?? false,
-      verified_phone: map['verified_phone'] ?? false,
-      name: map['name'] ?? '',
-      country: map['country'] ?? '',
-      phone: map['phone'] ?? '',
-      DOB: map['DOB'] ?? DateTime.now(),
-      level: map['level'] ?? '',
-      learn: map['learn'] ?? [],
-      register_date: map['register_date'] ?? DateTime.now(),
-      last_login: map['last_login'] ?? DateTime.now()
+      uuid: map['uuid'] != null ? map['uuid'] : '',
+      email: map['email'] != null ? map['email'] : '',
+      password: map['password'] != null ? map['password'] : '',
+      role: map['role'] != null ? map['role'] : '',
+      avatar: map['avatar'] != null ? map['avatar'] : '',
+      verified: map['verified'] != null ? map['verified'] : false,
+      verified_phone: map['verified_phone'] != null ? map['verified_phone'] : false,
+      name: map['name'] != null ? map['name'] : '',
+      country: map['country'] != null ? map['country'] : '',
+      phone: map['phone'] != null ? map['phone'] : '',
+      DOB: map['DOB'] != null ? DateTime.parse(map['DOB']) : DateTime.now(),
+      level: map['level'] != null ? map['level'] : '',
+      learn: map['learn'] != null ? List<String>.from(map['learn']) : [],
+      register_date: map['register_date'] != null ? DateTime.parse(map['register_date']) : DateTime.now(),
+      last_login: map['last_login'] != null ? DateTime.parse(map['last_login']) : DateTime.now(),
     );
   }
 

@@ -1,8 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 import 'dart:async';
+import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_client/constants/server.dart';
+import 'package:lettutor_client/models/accounts.dart';
 
 final dio = Dio(
   BaseOptions(
@@ -14,9 +16,9 @@ final dio = Dio(
     
 
 class AccountController {
-  static Future<int> login(String email, String password) async {
+  Future<Account> login(String email, String password) async {
     try {
-      Response response = await dio.post('/signup', 
+      Response response = await dio.post('/login', 
         data: {
           'email': email,
           'password': password,
@@ -32,39 +34,27 @@ class AccountController {
         ),
       );
 
-      //Đăng nhập thành công
       if(response.statusCode == 200) {
-        return 1;
-      }
-
-      //Lỗi về input
-      if(response.statusCode == 400) {
-        return 2;
-      }
-
-      if(response.statusCode == 401) {
-        //Lỗi email không tồn tại
-        if(response.data['error'] == 110) {
-          return 3;
-        }
-        //Lỗi password không đúng
-        else {
-          return 4;
-        }
+        //Lấy cookies của response
+        debugPrint(response.headers['set-cookie']![0].split(';').toString());
+        debugPrint(response.headers['set-cookie']![1].split(';').toString());
+        return Account.fromJson(jsonEncode(response.data['result']));
       }
       else {
-        return 0;
+        debugPrint('failed');
+        throw 'Wrong Email or Password';
       }
+      
     } on DioException catch (e) {
       debugPrint(e.type.toString());
       if(e.type == DioExceptionType.receiveTimeout || e.type == DioExceptionType.connectionTimeout) {
-        return 3;
+        throw 'Connection Timeout';
       }
 
       if(e.type == DioExceptionType.unknown) {
-        return 4;
+        throw 'Internet Error';
       }
-      return 5;
+      throw 'Server Error';
     }
   }
 

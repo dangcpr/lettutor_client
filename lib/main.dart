@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:lettutor_client/cubit/system/dark_mode_cubit.dart';
-import 'package:lettutor_client/cubit/system/language_cubit.dart';
+import 'package:lettutor_client/logic/bloc/account/login/login_bloc.dart';
+import 'package:lettutor_client/logic/cubit/system/dark_mode_cubit.dart';
+import 'package:lettutor_client/logic/cubit/system/language_cubit.dart';
 import 'package:lettutor_client/l10n/ln10.dart';
 import 'package:lettutor_client/themes/darkTheme.dart';
 import 'package:lettutor_client/themes/lightTheme.dart';
@@ -17,6 +18,7 @@ void main() {
   runApp(MultiBlocProvider(providers: [
     BlocProvider<DarkModeCubit>(create: (_) => DarkModeCubit()),
     BlocProvider<LanguageCubit>(create: (_) => LanguageCubit()),
+    BlocProvider<LoginBloc>(create: (_) => LoginBloc()),
   ], child: const MyApp()));
 }
 

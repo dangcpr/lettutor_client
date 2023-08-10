@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_client/cubit/system/dark_mode_cubit.dart';
-import 'package:lettutor_client/cubit/system/language_cubit.dart';
+import 'package:lettutor_client/logic/cubit/system/dark_mode_cubit.dart';
+import 'package:lettutor_client/logic/cubit/system/language_cubit.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

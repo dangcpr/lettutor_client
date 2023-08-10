@@ -1,11 +1,15 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lettutor_client/logic/bloc/account/login/login_bloc.dart';
+import 'package:lettutor_client/logic/bloc/account/login/login_event.dart';
+import 'package:lettutor_client/logic/bloc/account/login/login_state.dart';
+import 'package:lettutor_client/views/auth/login/error_message.dart';
 //import 'package:lettutor_client/controllers/account/accounts.dart';
 import 'package:lettutor_client/views/settings/button.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -131,13 +135,44 @@ class _LoginScreenState extends State<LoginScreen> {
                         return;
                       }
                       else {
-                        setState(() { isDone = false; });
-                        //int result = await AccountController.login(_emailController.text, _passwordController.text);
-                        setState(() { isDone = true; });
-                        debugPrint('Login');
+                        BlocProvider.of<LoginBloc>(context).add(
+                          LoginButtonPressed(email: _emailController.text, password: _passwordController.text)
+                        );
                       }
                     },
-                    child: isDone ? Text(AppLocalizations.of(context)!.loginTitle) : CircularProgressIndicator(color: Colors.white),
+                    child: BlocBuilder<LoginBloc, LoginState>(
+                      builder: (context, state) {
+                        if(state is LoginInitial) {
+                          return Text(AppLocalizations.of(context)!.loginTitle);
+                        } else if (state is LoginLoading) {
+                          return const CircularProgressIndicator(color: Colors.white);
+                        } else if (state is LoginError) {
+                          if(state.message == 'Wrong Email or Password') {
+                            errorMessage('Tài khoản hoặc mật khẩu không đúng', context);
+                          }
+                          else if (state.message == 'Connection Timeout') {
+                            errorMessage(AppLocalizations.of(context)!.timeoutError, context);
+                          }
+                          else if (state.message == 'Internet Error') {
+                            errorMessage(AppLocalizations.of(context)!.internetError, context);
+                          }
+                          else {
+                            errorMessage(AppLocalizations.of(context)!.serverError, context);
+                          }
+                          return Text(AppLocalizations.of(context)!.loginTitle);
+                        } else if (state is LoginSuccess) {
+                          WidgetsBinding.instance.addPostFrameCallback((_) => ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Đăng nhập thành công', style: TextStyle(color: Colors.white),),
+                              backgroundColor: Colors.green,
+                            )
+                          ));
+                          return Text(AppLocalizations.of(context)!.loginTitle);
+                        } else {
+                          return Text(AppLocalizations.of(context)!.loginTitle);
+                        }
+                      }
+                    )
                   )
                 ),
                 Align(
