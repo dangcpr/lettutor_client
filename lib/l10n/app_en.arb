@@ -45,9 +45,22 @@
         }
     },
     "backToLogin": "Back to login",
+    "resendEmail": "Resend email",
     "emailExists": "Email already exists. Please try again!",
     "formatInfoError": "Your information is not in the correct format. Please try again!",
     "timeoutError": "Timeout Error. Please try again!",
     "internetError": "Internet Error. Please check Internet connection!",
-    "serverError": "Server Error. Please try again!"
+    "serverError": "Server Error. Please try again!",
+    "pleaseCheckResendEmail": "Please check email {email} to activate your account!",
+    "@pleaseCheckResendEmail": {
+        "placeholders": {
+            "email": {
+                "type": "String",
+                "example": "abc@gmail.com"
+            }
+        }
+    },
+    "emailNotFound": "Email not found. Please try again!",
+    "emailWasVerified": "Email was verified. Please login!",
+    "wrongLogin": "Wrong login. Please try again!"
 }

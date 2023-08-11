@@ -11,11 +11,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(LoginLoading());
         try {
           final result = await AccountController().login(event.email, event.password);
+          debugPrint('2');
           emit(LoginSuccess(account: result));
         } catch (e) {
           debugPrint(e.toString());
           emit(LoginError(message: e.toString()));
         }
+      } else {
+        emit(LoginInitial());
       }
     });
   }

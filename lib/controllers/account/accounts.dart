@@ -35,10 +35,11 @@ class AccountController {
       );
 
       if(response.statusCode == 200) {
-        //Lấy cookies của response
-        debugPrint(response.headers['set-cookie']![0].split(';').toString());
-        debugPrint(response.headers['set-cookie']![1].split(';').toString());
-        return Account.fromJson(jsonEncode(response.data['result']));
+        debugPrint(jsonEncode(response.data['result']));
+        debugPrint('success');
+        Account result = Account.fromJson(jsonEncode(response.data['result']));
+        //debugPrint(result.toJson());
+        return result;
       }
       else {
         debugPrint('failed');
@@ -102,6 +103,49 @@ class AccountController {
         return 4;
       }
       return 5;
+    }
+  }
+
+  Future<int> resendEmailVerified(String email) async {
+    try {
+      Response response = await dio.post('/verified/resendtoken', 
+        data: {
+          'email': email,
+        },
+        options: Options(
+          followRedirects: false,
+          validateStatus: (status) {
+            return status! < 500;
+          },
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        ),
+      );
+
+      //Status Code
+      if (response.statusCode == 200) {
+        return 1;
+      }
+      else {
+        if(response.data['error'] == 412) {
+          throw 'Email not found';
+        }
+        else {
+          throw 'Email was verified';
+        }
+      }
+      
+    } on DioException catch (e) {
+      debugPrint(e.toString());
+      if(e.type == DioExceptionType.receiveTimeout || e.type == DioExceptionType.connectionTimeout) {
+        throw 'Connection Timeout';
+      }
+
+      if(e.type == DioExceptionType.unknown) {
+        throw 'Internet Error';
+      }
+      throw 'Server Error';
     }
   }
 }

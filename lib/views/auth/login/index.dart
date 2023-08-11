@@ -6,8 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lettutor_client/logic/bloc/account/login/login_bloc.dart';
 import 'package:lettutor_client/logic/bloc/account/login/login_event.dart';
 import 'package:lettutor_client/logic/bloc/account/login/login_state.dart';
-import 'package:lettutor_client/views/auth/login/error_message.dart';
-//import 'package:lettutor_client/controllers/account/accounts.dart';
+import 'package:lettutor_client/views/auth/helpers/error_message.dart';
 import 'package:lettutor_client/views/settings/button.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -24,6 +23,12 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _passwordController = TextEditingController();
   bool _passwordVisible = true;
   bool isDone = true;
+
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<LoginBloc>(context).add(LoginInitialEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -144,11 +149,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       builder: (context, state) {
                         if(state is LoginInitial) {
                           return Text(AppLocalizations.of(context)!.loginTitle);
-                        } else if (state is LoginLoading) {
+                        } 
+                        else if (state is LoginLoading) {
                           return const CircularProgressIndicator(color: Colors.white);
-                        } else if (state is LoginError) {
+                        } 
+                        else if (state is LoginError) {
                           if(state.message == 'Wrong Email or Password') {
-                            errorMessage('Tài khoản hoặc mật khẩu không đúng', context);
+                            errorMessage(AppLocalizations.of(context)!.wrongLogin, context);
                           }
                           else if (state.message == 'Connection Timeout') {
                             errorMessage(AppLocalizations.of(context)!.timeoutError, context);
@@ -160,13 +167,27 @@ class _LoginScreenState extends State<LoginScreen> {
                             errorMessage(AppLocalizations.of(context)!.serverError, context);
                           }
                           return Text(AppLocalizations.of(context)!.loginTitle);
-                        } else if (state is LoginSuccess) {
-                          WidgetsBinding.instance.addPostFrameCallback((_) => ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Đăng nhập thành công', style: TextStyle(color: Colors.white),),
-                              backgroundColor: Colors.green,
-                            )
-                          ));
+                        } 
+                        else if (state is LoginSuccess) {
+                          if(state.account.verified == false) {
+                            Future.delayed(Duration.zero, () async {
+                              Navigator.pushReplacementNamed(context, '/sendEmailVerified', arguments: state.account.email);
+                            });
+                          } 
+                          else {
+                            if (state.account.last_login == DateTime(1)) {
+                              debugPrint('555');
+                              Future.delayed(Duration.zero, () async {
+                                Navigator.pushReplacementNamed(context, '/registerInfo', arguments: state.account.email);
+                              });
+                            } 
+                            else {
+                              Future.delayed(Duration.zero, () async {
+                                Navigator.pushReplacementNamed(context, '/student');
+                              });
+                            }
+                          }
+                          BlocProvider.of<LoginBloc>(context).add(LoginInitialEvent());
                           return Text(AppLocalizations.of(context)!.loginTitle);
                         } else {
                           return Text(AppLocalizations.of(context)!.loginTitle);

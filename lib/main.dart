@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:lettutor_client/logic/bloc/account/login/login_bloc.dart';
+import 'package:lettutor_client/logic/bloc/account/resend_email_verified/resend_email_bloc.dart';
 import 'package:lettutor_client/logic/cubit/system/dark_mode_cubit.dart';
 import 'package:lettutor_client/logic/cubit/system/language_cubit.dart';
 import 'package:lettutor_client/l10n/ln10.dart';
@@ -9,16 +10,18 @@ import 'package:lettutor_client/themes/darkTheme.dart';
 import 'package:lettutor_client/themes/lightTheme.dart';
 import 'package:lettutor_client/views/auth/forgotPass/index.dart';
 import 'package:lettutor_client/views/auth/login/index.dart';
-//import 'package:lettutor_client/views/auth/login/temp.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lettutor_client/views/auth/sendEmail/index.dart';
+import 'package:lettutor_client/views/auth/signup/information/index.dart';
 import 'package:lettutor_client/views/auth/signup/registerAccount/index.dart';
+import 'package:lettutor_client/views/home/student/index.dart';
 
 void main() {
   runApp(MultiBlocProvider(providers: [
     BlocProvider<DarkModeCubit>(create: (_) => DarkModeCubit()),
     BlocProvider<LanguageCubit>(create: (_) => LanguageCubit()),
     BlocProvider<LoginBloc>(create: (_) => LoginBloc()),
+    BlocProvider<ResendEmailBloc>(create: (_) => ResendEmailBloc())
   ], child: const MyApp()));
 }
 
@@ -54,6 +57,8 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => const SignUpScreen(),
         '/forgotPass': (context) => const ForgetPassScreen(),
         '/sendEmailVerified': (context) => const SendEmailVerifiedScreen(),
+        '/student': (context) => const StudentScreen(),
+        '/registerInfo': (context) => const RegisterInfomationScreen(),
         //'/temp': (context) => const TempScreen(),
       },
       home: const LoginScreen(),

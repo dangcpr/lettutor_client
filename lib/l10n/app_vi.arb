@@ -45,9 +45,22 @@
         }
     },
     "backToLogin": "Quay lại đăng nhập",
+    "resendEmail": "Gửi lại email",
     "emailExists": "Email đã tồn tại. Vui lòng thử lại!",
     "formatInfoError": "Thông tin không đúng định dạng. Vui lòng thử lại!",
     "timeoutError": "Hết thời gian kết nối, vui lòng thử lại!",
     "internetError": "Không có kết nối Internet, vui lòng kiểm tra kết nối Internet của bạn!",
-    "serverError": "Lỗi máy chủ, vui lòng thử lại sau!"
+    "serverError": "Lỗi máy chủ, vui lòng thử lại sau!",
+    "pleaseCheckResendEmail": "Vui lòng kiểm tra email {email} để xác thực tài khoản",
+    "@pleaseCheckResendEmail": {
+        "placeholders": {
+            "email": {
+                "type": "String",
+                "example": "abc@gmail.com"
+            }
+        }
+    },
+    "emailNotFound": "Email không tồn tại. Vui lòng thử lại!",
+    "emailWasVerified": "Email đã được xác thực. Vui lòng đăng nhập!",
+    "wrongLogin": "Thông tin đăng nhập chưa đúng. Vui lòng thử lại!"
 }

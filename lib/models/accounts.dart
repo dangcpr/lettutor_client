@@ -68,11 +68,11 @@ class Account {
       name: map['name'] != null ? map['name'] : '',
       country: map['country'] != null ? map['country'] : '',
       phone: map['phone'] != null ? map['phone'] : '',
-      DOB: map['DOB'] != null ? DateTime.parse(map['DOB']) : DateTime.now(),
+      DOB: map['DOB'] != null ? DateTime.parse(map['DOB']) : DateTime(1),
       level: map['level'] != null ? map['level'] : '',
       learn: map['learn'] != null ? List<String>.from(map['learn']) : [],
-      register_date: map['register_date'] != null ? DateTime.parse(map['register_date']) : DateTime.now(),
-      last_login: map['last_login'] != null ? DateTime.parse(map['last_login']) : DateTime.now(),
+      register_date: map['register_date'] != null ? DateTime.parse(map['register_date']) : DateTime(1),
+      last_login: map['last_login'] != null ? DateTime.parse(map['last_login']) : DateTime(1),
     );
   }
 
