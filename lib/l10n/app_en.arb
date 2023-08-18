@@ -62,5 +62,20 @@
     },
     "emailNotFound": "Email not found. Please try again!",
     "emailWasVerified": "Email was verified. Please login!",
-    "wrongLogin": "Wrong login. Please try again!"
+    "wrongLogin": "Wrong login. Please try again!",
+    "firstandlast": "First and Last Name",
+    "firstandlastHelper": "Enter your first and last name",
+    "phone": "Phone Number",
+    "phoneHelper": "Enter your phone number",
+    "phoneHelperTenChacs": "Enter your phone number (10 characters)",
+    "country": "Country",
+    "countryHelper": "Enter your country",
+    "dob": "Date of Birth",
+    "dobHelper": "Enter your Date of Birth",
+    "level": "Level",
+    "levelHelper": "Enter your level",
+    "topic": "Topic",
+    "topicHelper": "Enter your topic",
+    "registerInfo": "Register Information",
+    "registerInfoSub": "Enter your information to continue"
 }

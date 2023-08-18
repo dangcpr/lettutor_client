@@ -9,8 +9,8 @@ import 'package:lettutor_client/models/accounts.dart';
 final dio = Dio(
   BaseOptions(
     baseUrl: '$urlServer/account',
-    connectTimeout: const Duration(seconds: 5),
-    receiveTimeout: const Duration(seconds: 5),
+    connectTimeout: const Duration(seconds: 30),
+    receiveTimeout: const Duration(seconds: 30),
   ),
 );
     
@@ -44,6 +44,47 @@ class AccountController {
       else {
         debugPrint('failed');
         throw 'Wrong Email or Password';
+      }
+      
+    } on DioException catch (e) {
+      debugPrint(e.type.toString());
+      if(e.type == DioExceptionType.receiveTimeout || e.type == DioExceptionType.connectionTimeout) {
+        throw 'Connection Timeout';
+      }
+
+      if(e.type == DioExceptionType.unknown) {
+        throw 'Internet Error';
+      }
+      throw 'Server Error';
+    }
+  }
+
+  Future<Account> registerInfo(FormData formData) async {
+    try {
+      debugPrint('444');
+      Response response = await dio.post('/registerInfo', 
+        data: formData,
+        options: Options(
+          followRedirects: false,
+          validateStatus: (status) {
+            return status! < 500;
+          },
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        ),
+      );
+      debugPrint('444');
+      if(response.statusCode == 200) {
+        debugPrint(jsonEncode(response.data['result']));
+        debugPrint('success');
+        Account result = Account.fromJson(jsonEncode(response.data['result']));
+        //debugPrint(result.toJson());
+        return result;
+      }
+      else {
+        debugPrint(jsonEncode(response.data['message']));
+        throw 'Wrong information';
       }
       
     } on DioException catch (e) {

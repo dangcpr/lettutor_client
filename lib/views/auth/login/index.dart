@@ -176,9 +176,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           } 
                           else {
                             if (state.account.last_login == DateTime(1)) {
-                              debugPrint('555');
                               Future.delayed(Duration.zero, () async {
-                                Navigator.pushReplacementNamed(context, '/registerInfo', arguments: state.account.email);
+                                Navigator.pushReplacementNamed(context, '/registerInfo', arguments: {
+                                  'email': state.account.email,
+                                  'pass': _passwordController.text
+                                });
                               });
                             } 
                             else {

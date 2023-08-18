@@ -62,5 +62,20 @@
     },
     "emailNotFound": "Email không tồn tại. Vui lòng thử lại!",
     "emailWasVerified": "Email đã được xác thực. Vui lòng đăng nhập!",
-    "wrongLogin": "Thông tin đăng nhập chưa đúng. Vui lòng thử lại!"
+    "wrongLogin": "Thông tin đăng nhập chưa đúng. Vui lòng thử lại!",
+    "firstandlast": "Họ và tên",
+    "firstandlastHelper": "Vui lòng nhập họ và tên",
+    "phone": "Số điện thoại",
+    "phoneHelper": "Vui lòng nhập số điện thoại",
+    "phoneHelperTenChacs": "Số điện thoại không đúng định dạng (10 chữ số)",
+    "country": "Quốc gia",
+    "countryHelper": "Vui lòng nhập quốc gia",
+    "dob": "Ngày sinh",
+    "dobHelper": "Vui lòng nhập ngày sinh",
+    "level": "Trình độ của bạn",
+    "levelHelper": "Vui lòng nhâp trình độ của bạn",
+    "topic": "Chủ đề",
+    "topicHelper": "Vui lòng chọn chủ đề",
+    "registerInfo": "Đăng ký thông tin",
+    "registerInfoSub": "Hãy điền thông tin của bạn bên dưới"
 }

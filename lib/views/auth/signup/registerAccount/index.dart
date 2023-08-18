@@ -65,7 +65,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             prefixIcon: Icon(Icons.email),
                             labelText: AppLocalizations.of(context)!.emailLabel,
                             hintText: AppLocalizations.of(context)!.emailHelper,
-                            ),
+                          ),
                           validator: (value) {
                             if(value!.isEmpty)  {
                               return AppLocalizations.of(context)!.emailErrorEmpty;

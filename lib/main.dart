@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:lettutor_client/logic/bloc/account/login/login_bloc.dart';
+import 'package:lettutor_client/logic/bloc/account/register_info/register_info_bloc.dart';
 import 'package:lettutor_client/logic/bloc/account/resend_email_verified/resend_email_bloc.dart';
+import 'package:lettutor_client/logic/cubit/register_info/upload_image.dart';
 import 'package:lettutor_client/logic/cubit/system/dark_mode_cubit.dart';
 import 'package:lettutor_client/logic/cubit/system/language_cubit.dart';
 import 'package:lettutor_client/l10n/ln10.dart';
@@ -21,7 +23,9 @@ void main() {
     BlocProvider<DarkModeCubit>(create: (_) => DarkModeCubit()),
     BlocProvider<LanguageCubit>(create: (_) => LanguageCubit()),
     BlocProvider<LoginBloc>(create: (_) => LoginBloc()),
-    BlocProvider<ResendEmailBloc>(create: (_) => ResendEmailBloc())
+    BlocProvider<ResendEmailBloc>(create: (_) => ResendEmailBloc()),
+    BlocProvider<UploadImageCubit>(create: (_) => UploadImageCubit()),
+    BlocProvider<RegisterInfoBloc>(create: (_) => RegisterInfoBloc()),
   ], child: const MyApp()));
 }
 

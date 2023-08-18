@@ -1,1 +1,1 @@
-const urlServer = 'http://10.0.134.88:5000';
+const urlServer = 'http://10.0.132.202:5000';
