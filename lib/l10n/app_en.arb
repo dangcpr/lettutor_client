@@ -77,5 +77,8 @@
     "topic": "Topic",
     "topicHelper": "Enter your topic",
     "registerInfo": "Register Information",
-    "registerInfoSub": "Enter your information to continue"
+    "registerInfoSub": "Enter your information to continue",
+    "uploadPhoto": "Upload Photo",
+    "usingCamera": "Using Camera",
+    "or": "Or"
 }

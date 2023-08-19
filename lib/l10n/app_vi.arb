@@ -77,5 +77,8 @@
     "topic": "Chủ đề",
     "topicHelper": "Vui lòng chọn chủ đề",
     "registerInfo": "Đăng ký thông tin",
-    "registerInfoSub": "Hãy điền thông tin của bạn bên dưới"
+    "registerInfoSub": "Hãy điền thông tin của bạn bên dưới",
+    "uploadPhoto": "Tải ảnh lên",
+    "usingCamera": "Sử dụng camera",
+    "or": "Hoặc"
 }

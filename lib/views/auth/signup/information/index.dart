@@ -31,11 +31,12 @@ class _RegisterInfomationScreenState extends State<RegisterInfomationScreen> {
   //Parameter
   File? imageFile;
   TextEditingController name = TextEditingController();
-  TextEditingController country = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController DOB = TextEditingController();
-  TextEditingController level = TextEditingController();
   DateTime selectedDate = DateTime.now();
+  String? _country;
+  String? _level;
+  List<String?> _selectedCategories = [];
 
   @override
   void initState() {
@@ -47,10 +48,7 @@ class _RegisterInfomationScreenState extends State<RegisterInfomationScreen> {
   Widget build(BuildContext context) {    
     final user = ModalRoute.of(context)!.settings.arguments as Map<String, String>?;
     debugPrint(user!['email']);
-
-    String? _country = null;
-    String? _level = null;
-    List<String?> _selectedCategories = [];
+    var brightness = Theme.of(context).brightness;
 
     GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -148,7 +146,6 @@ class _RegisterInfomationScreenState extends State<RegisterInfomationScreen> {
                               labelText: AppLocalizations.of(context)!.country,
                               prefixIcon: Icon(Icons.flag),
                             ),
-                            value: _country,
                             items: countries.map((country) {
                               return DropdownMenuItem(
                                 value: country,
@@ -156,9 +153,9 @@ class _RegisterInfomationScreenState extends State<RegisterInfomationScreen> {
                               );
                             }).toList(),
                             onChanged: (val) {
-                              _country = val as String;
-                              debugPrint(country.text);
+                              _country = val as String?;
                             },
+                            value: _country,
                           )
                         )
                       ),
@@ -202,7 +199,7 @@ class _RegisterInfomationScreenState extends State<RegisterInfomationScreen> {
                               return null;
                             },
                             onTap: () {
-                              _selectDate(context);
+                              _selectDate(context, brightness);
                             },
                           ),
                         )
@@ -240,7 +237,6 @@ class _RegisterInfomationScreenState extends State<RegisterInfomationScreen> {
                             }).toList(),
                             onChanged: (val) {
                               _level = val as String;
-                              debugPrint(level.text);
                             },
                           )
                         )
@@ -278,7 +274,7 @@ class _RegisterInfomationScreenState extends State<RegisterInfomationScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                 child: TextButton(
                   onPressed: () async {
                     if(_formKey.currentState!.validate() == false) {
@@ -363,8 +359,7 @@ class _RegisterInfomationScreenState extends State<RegisterInfomationScreen> {
     );
   }
   
-  Future<void> _selectDate(BuildContext context) async {
-    var brightness = Theme.of(context).brightness;
+  Future<void> _selectDate(BuildContext context, Brightness brightness) async {
     debugPrint(brightness.toString());
     final DateTime? picked = await showDatePicker(
       builder: (context, child) => Theme(

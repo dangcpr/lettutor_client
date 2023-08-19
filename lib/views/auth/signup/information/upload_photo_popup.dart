@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_client/logic/cubit/register_info/upload_image.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChooseOptionImage extends StatefulWidget {
   const ChooseOptionImage(BuildContext context, {super.key});
@@ -36,11 +37,11 @@ class _ChooseOptionImageState extends State<ChooseOptionImage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(Icons.upload_file, size: 30),
-                      Text('  Upload photo')
+                      Text('  ' + AppLocalizations.of(context)!.uploadPhoto)
                     ],
                   )
                 ),
-                Padding(padding: EdgeInsets.symmetric(vertical: 5), child: Text('Hoặc', style: Theme.of(context).textTheme.bodyLarge)),
+                Padding(padding: EdgeInsets.symmetric(vertical: 5), child: Text(AppLocalizations.of(context)!.or, style: Theme.of(context).textTheme.bodyLarge)),
                 TextButton(
                   onPressed: () {
                     context.read<UploadImageCubit>().takePhoto(context);
@@ -50,7 +51,7 @@ class _ChooseOptionImageState extends State<ChooseOptionImage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(Icons.camera, size: 30),
-                      Text('  Using camera')
+                      Text('  ' + AppLocalizations.of(context)!.usingCamera)
                     ],
                   )
                 ),
