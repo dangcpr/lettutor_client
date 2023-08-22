@@ -1,9 +1,13 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:lettutor_client/constants/server.dart';
+import 'package:lettutor_client/controllers/fcm/fcm.dart';
 import 'package:lettutor_client/logic/bloc/account/login/login_bloc.dart';
 import 'package:lettutor_client/logic/bloc/account/register_info/register_info_bloc.dart';
 import 'package:lettutor_client/logic/bloc/account/resend_email_verified/resend_email_bloc.dart';
+import 'package:lettutor_client/logic/cubit/fcm/token.dart';
 import 'package:lettutor_client/logic/cubit/register_info/upload_image.dart';
 import 'package:lettutor_client/logic/cubit/system/dark_mode_cubit.dart';
 import 'package:lettutor_client/logic/cubit/system/language_cubit.dart';
@@ -18,7 +22,9 @@ import 'package:lettutor_client/views/auth/signup/information/index.dart';
 import 'package:lettutor_client/views/auth/signup/registerAccount/index.dart';
 import 'package:lettutor_client/views/home/student/index.dart';
 
-void main() {
+void main() async {
+  await FCM().init();
+
   runApp(MultiBlocProvider(providers: [
     BlocProvider<DarkModeCubit>(create: (_) => DarkModeCubit()),
     BlocProvider<LanguageCubit>(create: (_) => LanguageCubit()),
@@ -26,6 +32,7 @@ void main() {
     BlocProvider<ResendEmailBloc>(create: (_) => ResendEmailBloc()),
     BlocProvider<UploadImageCubit>(create: (_) => UploadImageCubit()),
     BlocProvider<RegisterInfoBloc>(create: (_) => RegisterInfoBloc()),
+    BlocProvider<FCMTokenCubit>(create: (_) => FCMTokenCubit()),
   ], child: const MyApp()));
 }
 
@@ -37,7 +44,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<DarkModeCubit>().loadOption();
     context.read<LanguageCubit>().loadOption();
-
+    context.read<FCMTokenCubit>().setToken(fcmToken);
+    debugPrint(context.read<FCMTokenCubit>().state);
+    
     final isDarkMode = context.watch<DarkModeCubit>().state;
     final locale = context.watch<LanguageCubit>().state;
 
